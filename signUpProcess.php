@@ -47,8 +47,8 @@ if(empty($fname)){
         $date = $d->format("Y-m-d H:i:s");
 
         Database::iud("INSERT INTO `user` 
-        (`fname`,`lname`,`email`,`mobile`,`password`,`gender_id`,`joined_date`,`status`) VALUES
-        ('".$fname."','".$lname."','".$email."','".$mobile."','".$password."','".$gender."','".$date."','1')");
+        (`fname`,`lname`,`email`,`password`,`mobile`,`gender_id`,`joined_date`,`status`) VALUES
+        ('".$fname."','".$lname."','".$email."','".$password."','".$mobile."','".$gender."','".$date."','1')");
 
         echo("Success");
 

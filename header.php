@@ -1,5 +1,18 @@
+<!DOCTYPE html>
 
-    <div class="col-12 main-body">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="col-12">
         <div class="row mt-1 mb-1">
 
             <div class="offset-lg-1 col-12 col-lg-4 align-self-start mt-2">
@@ -10,25 +23,28 @@
 
                 if (isset($_SESSION["u"])) {
                     $data = $_SESSION["u"];
+
                 ?>
 
-                    <span class="text-text-lg-start text-success"><b>Welcome</b> <?php echo ($data["fname"]); ?></span> |
-                    <span class="text-text-lg-start fw-bold text-danger mylink" onclick="signout();">Sign Out</span> |
+                    <span class="text-text-lg-start "><b>Welcome </b><?php echo $data["fname"]; ?></span> |
+                    <span class="text-text-lg-start fw-bold signout" onclick="signOut();">Sign Out</span> |
 
                 <?php
+
+
                 } else {
+
                 ?>
 
-                    <a href="index.php" class="text-decoration-none fw-bold mylink">Sign In or Register</a>
+                    <a href="index.php" class="text-decoration-none fw-bold">Sign In or Register</a> |
 
                 <?php
                 }
 
-
                 ?>
 
 
-                <span class="text-text-lg-start fw-bold text-info mylink">Help and Contact</span>
+                <span class="text-lg-start fw-bold">Help and Contact</span>
 
             </div>
 
@@ -43,20 +59,87 @@
                             My eShop
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="userProfile.php">My Profile</a></li>
                             <li><a class="dropdown-item" href="#">My Sellings</a></li>
-                            <li><a class="dropdown-item" href="#">My Products</a></li>
-                            <li><a class="dropdown-item" href="#">Wishlist</a></li>
-                            <li><a class="dropdown-item" href="#">Purchase History</a></li>
-                            <li><a class="dropdown-item" href="#">Massage</a></li>
-                            <li><a class="dropdown-item" href="#">Saved</a></li>
+                            <li><a class="dropdown-item" href="myProducts.php">My Products</a></li>
+                            <li><a class="dropdown-item" href="watchlist.php">Watchlist</a></li>
+                            <li><a class="dropdown-item" href="purchasingHistory.php">Purchase History</a></li>
+                            <li><a class="dropdown-item" href="message.php">Message</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="contactAdmin('<?php echo $_SESSION['u']['email']; ?>');">Contact Us</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-1 col-lg-3 ms-5 ms-lg-0 mt-1 cart-icon"></div>
+                    <div class="col-1 col-lg-3 ms-5 ms-lg-0 mt-1 cart-icon" onclick="window.location='cart.php'"></div>
+
+                    <!-- msg modal -->
+                    <div class="modal" tabindex="-1" id="contactAdmin">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body overflow-scroll">
+                                    <!-- received -->
+                                    <div class="col-12 mt-2">
+                                        <div class=" row">
+                                            <div class="col-8 rounded bg-success">
+                                                <div class="row">
+                                                    <div class="col-12 pt-2">
+                                                        <span class="text-white fw-bold fs-4">Hello there!!!</span>
+                                                    </div>
+                                                    <div class="col-12 text-end pb-2">
+                                                        <span class="text-white fs-6">2022-11-09 00:00:00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- received -->
+                                    <!-- sent -->
+                                    <div class="col-12 mt-2">
+                                        <div class=" row">
+                                            <div class="offset-4 col-8 rounded bg-primary">
+                                                <div class="row">
+                                                    <div class="col-12 pt-2">
+                                                        <span class="text-white fw-bold fs-4">Hello there!!!</span>
+                                                    </div>
+                                                    <div class="col-12 text-end pb-2">
+                                                        <span class="text-white fs-6">2022-11-09 00:00:00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- sent -->
+                                </div>
+                                <div class="modal-footer">
+
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <input type="text" class="form-control" id="msgtxt"/>
+                                            </div>
+                                            <div class="col-3 d-grid">
+                                                <button type="button" class="btn btn-primary" onclick="sendAdminMsg();">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- msg modal -->
 
                 </div>
             </div>
 
         </div>
     </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

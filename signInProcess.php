@@ -27,7 +27,7 @@ if(empty($email)){
    
    if($n == 1){
 
-    echo("success");
+    echo("success"); 
     $d = $rs->fetch_assoc();
     $_SESSION["u"] = $d;
 
