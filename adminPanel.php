@@ -25,7 +25,7 @@ if (isset($_SESSION["au"])) {
         <link rel="icon" href="resource/logo.svg" />
     </head>
 
-    <body style="background-color: #74EBD5; background-image: linear-gradient(90deg,#74EBD5 0%,#9FACE6 100%);">
+    <body style="background-color: #74EBD5; background-image: linear-gradient(90deg,#74EBD5 0%,#9FACE6 100%);" onload="reload();">
 
         <div class="container-fluid">
             <div class="row">
@@ -50,17 +50,20 @@ if (isset($_SESSION["au"])) {
 
                                 <div class="col-12 mt-5">
                                     <hr class="border border-1 border-white" />
-                                    <h4 class="text-white fw-bold">Selling History</h4>
+                                    <a href="sellingHistory.php" class="text-white fw-bold text-decoration-none fs-3">Selling History</a>
                                     <hr class="border border-1 border-white" />
                                 </div>
 
                                 <div class="col-12 mt-3 d-grid">
                                     <label class="form-label fs-6 fw-bold text-white">From Date</label>
-                                    <input type="date" class="form-control" />
+                                    <input type="date" class="form-control" id="from"/>
+
                                     <label class="form-label fs-6 fw-bold text-white">To Date</label>
-                                    <input type="date" class="form-control" />
-                                    <a href="sellingHistory.php" class="btn btn-primary mt-2">Search</a>
+                                    <input type="date" class="form-control" id="to"/>
+
+                                    <a href="#" class="btn btn-primary mt-2" onclick="findSellings();">Search</a>
                                     <hr class="border border-1 border-white" />
+                                    
                                     <label class="form-label fs-6 fw-bold text-white">Daily Sellings</label>
                                     <hr class="border border-1 border-white" />
                                     <hr class="border border-1 border-white" />
@@ -125,7 +128,7 @@ if (isset($_SESSION["au"])) {
                                                 if ($pyear == $thisyear) {
                                                     if ($pmonth == $thismonth) {
                                                         $b = $b + $invoice_data["total"];
-                                                        $e = $e = $invoice_data["qty"];
+                                                        $e = $e + $invoice_data["qty"];
                                                     }
                                                 }
                                             }
@@ -189,7 +192,7 @@ if (isset($_SESSION["au"])) {
                                     <div class="row g-1">
                                         <div class="col-12 bg-danger text-white text-center rounded" style="height: 100px;">
                                             <br />
-                                            <span class="fs-4 fw-bold">Total Engagements</span>
+                                            <span class="fs-4 fw-bold">Total Members</span>
                                             <br />
 
                                             <?php
@@ -216,29 +219,10 @@ if (isset($_SESSION["au"])) {
                                 <div class="col-12 col-lg-2 text-center my-3">
                                     <label class="form-label fs-4 fw-bold text-white">Total Active Time</label>
                                 </div>
-                                <div class="col-12 col-lg-10 text-center my-3">
+                                <div class="col-12 col-lg-10 text-center my-3" id="time">
 
-                                    <?php
-
-                                    $start_date = new DateTime("2022-09-27 00:00:00");
-
-                                    $tdate = new DateTime();
-                                    $tz = new DateTimeZone("Asia/Colombo");
-                                    $tdate->setTimezone($tz);
-
-                                    $end_date = new DateTime($tdate->format("Y-m-d H:i:s"));
-
-                                    $difference = $end_date->diff($start_date);
-
-                                    ?>
-                                    <label class="form-label fs-4 fw-bold text-warning">
-                                        <?php
-
-                                        echo $difference->format('%Y') . " Years " . $difference->format('%m') . " Months " .
-                                            $difference->format('%d') . " Days " . $difference->format('%H') . " Hours " .
-                                            $difference->format('%i') . " Minutes " . $difference->format('%s') . " Seconds ";
-                                        ?>
-                                    </label>
+                                  <!-- Time -->
+                                  
                                 </div>
                             </div>
                         </div>

@@ -29,17 +29,13 @@ for ($x = 0; $x < $msg_num; $x++) {
             if (isset($img_data["path"])) {
 
             ?>
-
                 <img src="<?php echo $img_data["path"]; ?>" width="50px" class="rounded-circle" />
-
             <?php
 
             } else {
 
             ?>
-
                 <img src="resource/profile_img/new_user.svg" width="50px" class="rounded-circle" />
-
             <?php
 
             }
@@ -73,6 +69,9 @@ for ($x = 0; $x < $msg_num; $x++) {
 
     <?php
 
+    }
+    if($msg_data["status"] == 0){
+        Database::iud("UPDATE `chat` SET `status`='1' WHERE `from`='".$sender_mail."' AND `to`='".$recever_mail."'");
     }
 }
 

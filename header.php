@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body onload="adminMsgViewReload1();">
 
     <div class="col-12">
         <div class="row mt-1 mb-1">
@@ -60,11 +60,11 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="userProfile.php">My Profile</a></li>
-                            <li><a class="dropdown-item" href="#">My Sellings</a></li>
                             <li><a class="dropdown-item" href="myProducts.php">My Products</a></li>
                             <li><a class="dropdown-item" href="watchlist.php">Watchlist</a></li>
                             <li><a class="dropdown-item" href="purchasingHistory.php">Purchase History</a></li>
                             <li><a class="dropdown-item" href="message.php">Message</a></li>
+                            <li><a class="dropdown-item" href="adminSignIn.php">Admin</a></li>
                             <li><a class="dropdown-item" href="#" onclick="contactAdmin('<?php echo $_SESSION['u']['email']; ?>');">Contact Us</a></li>
                         </ul>
                     </div>
@@ -79,49 +79,18 @@
                                     <h5 class="modal-title">Modal title</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body overflow-scroll">
-                                    <!-- received -->
-                                    <div class="col-12 mt-2">
-                                        <div class=" row">
-                                            <div class="col-8 rounded bg-success">
-                                                <div class="row">
-                                                    <div class="col-12 pt-2">
-                                                        <span class="text-white fw-bold fs-4">Hello there!!!</span>
-                                                    </div>
-                                                    <div class="col-12 text-end pb-2">
-                                                        <span class="text-white fs-6">2022-11-09 00:00:00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- received -->
-                                    <!-- sent -->
-                                    <div class="col-12 mt-2">
-                                        <div class=" row">
-                                            <div class="offset-4 col-8 rounded bg-primary">
-                                                <div class="row">
-                                                    <div class="col-12 pt-2">
-                                                        <span class="text-white fw-bold fs-4">Hello there!!!</span>
-                                                    </div>
-                                                    <div class="col-12 text-end pb-2">
-                                                        <span class="text-white fs-6">2022-11-09 00:00:00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- sent -->
+                                <div class="modal-body overflow-scroll" id="user">
+                                  
                                 </div>
                                 <div class="modal-footer">
 
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-9">
-                                                <input type="text" class="form-control" id="msgtxt"/>
+                                                <input type="text" class="form-control" id="msgtxt" placeholder="type..."/>
                                             </div>
                                             <div class="col-3 d-grid">
-                                                <button type="button" class="btn btn-primary" onclick="sendAdminMsg();">Send</button>
+                                                <button type="button" class="btn btn-primary" onclick="sendAdminMsg1();">Send</button>
                                             </div>
                                         </div>
                                     </div>

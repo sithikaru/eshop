@@ -34,7 +34,7 @@ function signUp() {
                 document.getElementById("msg").className = "bi bi-check2-circle fs-5";
                 document.getElementById("alertdiv").className = "alert alert-success";
                 document.getElementById("msgdiv").className = "d-block";
-                document.getElementById("f".value).innerHTML = "";
+                document.getElementById("f").innerHTML = "";
             } else {
                 document.getElementById("msg").innerHTML = text;
                 document.getElementById("msgdiv").className = "d-block";
@@ -725,7 +725,7 @@ function send_msg() {
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
             var t = r.responseText;
-            if (t = "success") {
+            if (t == "success") {
                 window.location.reload();
             } else {
                 alert(t);
@@ -910,7 +910,7 @@ function adminVerification() {
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
             var t = r.responseText;
-            if (t = "success") {
+            if (t == "success") {
                 var adminVerificationModal = document.getElementById("verificationModal");
                 av = new bootstrap.Modal(adminVerificationModal);
                 av.show();
@@ -943,6 +943,30 @@ function verify() {
 
     r.open("GET", "verificationProcess.php?v=" + verification.value, true);
     r.send();
+}
+
+reloadTimeAnimationNumber = 0;
+
+function reloadTime() {
+    var time = document.getElementById("time");
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            time.innerHTML = t;
+
+        }
+    }
+
+    r.open("POST", "adminPanelReload.php", true);
+    r.send();
+
+}
+
+function reload() {
+    reloadTimeAnimationNumber = setInterval(reloadTime, 100);
 }
 
 function blockUser(email) {
@@ -995,11 +1019,39 @@ function blockProduct(id) {
 
 
 var mm;
+var email1;
+var xx;
 
-function viewMsgModal(email) {
-    var m = document.getElementById("userMsgModal" + email);
+function viewMsgModal(email, x) {
+    xx = x;
+    email1 = email;
+    m = document.getElementById("userMsgModal" + email);
     mm = new bootstrap.Modal(m);
     mm.show();
+}
+
+function viewAdminMsg() {
+
+    var f = new FormData();
+    f.append("e", email1);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            document.getElementById("admin" + xx).innerHTML = t;
+
+        }
+    }
+
+    r.open("POST", "FromAdminMsgProcess.php", true);
+    r.send(f);
+}
+
+function adminMsgViewReload() {
+    setInterval(viewAdminMsg, 100);
+
 }
 
 
@@ -1164,25 +1216,53 @@ function findSellings() {
 
 
 var cam;
+var email2;
 
 function contactAdmin(email) {
+    email2 = email;
     var m = document.getElementById("contactAdmin");
     cam = new bootstrap.Modal(m);
     cam.show();
 }
 
-function sendAdminMsg() {
-    var txt = document.getElementById("msgtxt").value;
+function viewAdminMsg1() {
 
     var f = new FormData();
-    f.append("t", txt);
+    f.append("e", email2);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function() {
+        if (r.readyState == 4) {
+            var t = r.responseText;
+            document.getElementById("user").innerHTML = t;
+
+        }
+    }
+
+    r.open("POST", "FromAdminMsgProcess1.php", true);
+    r.send(f);
+}
+
+function adminMsgViewReload1() {
+    setInterval(viewAdminMsg1, 100);
+
+}
+
+function sendAdminMsg1() {
+    var txt = document.getElementById("msgtxt");
+
+    var f = new FormData();
+    f.append("t", txt.value);
 
     r = new XMLHttpRequest();
 
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
             var t = r.responseText;
-            alert(t);
+            if (t == "success1") {
+                txt.innerHTML = " ";
+            }
         }
     }
 
@@ -1190,8 +1270,8 @@ function sendAdminMsg() {
     r.send(f);
 }
 
-function sendAdminMsg(email) {
-    var txt = document.getElementById("msgtxt").value;
+function sendAdminMsg(email, id) {
+    var txt = document.getElementById(id).value;
 
     var f = new FormData();
     f.append("t", txt);
@@ -1202,7 +1282,9 @@ function sendAdminMsg(email) {
     r.onreadystatechange = function() {
         if (r.readyState == 4) {
             var t = r.responseText;
-            alert(t);
+            if (t == "success2") {
+                txt.innerHTML = " ";
+            }
         }
     }
 

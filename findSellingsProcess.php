@@ -28,28 +28,25 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                         <label class="form-label fs-5 fw-bold text-white mt-1 mb-1"><?php echo $invoice_data["id"]; ?></label>
                     </div>
 
+                    <?php
+                    $pid = $invoice_data["product_id"];
+
+                    $product_rs = Database::search("SELECT * FROM `product` WHERE `id`='" . $pid . "'");
+                    $product_data = $product_rs->fetch_assoc();
+
+                    ?>
                     <div class="col-3 bg-body text-end">
-
-                        <?php
-                        $pid = $invoice_data["product_id"];
-
-                        $product_rs = Database::search("SELECT * FROM `product` WHERE `id`='" . $pid . "'");
-                        $product_data = $product_rs->fetch_assoc();
-
-                        ?>
-
                         <label class="form-label fs-5 fw-bold text-black mt-1 mb-1"><?php echo $product_data["title"]; ?></label>
                     </div>
 
+                    <?php
+                    $uemail = $invoice_data["user_email"];
+
+                    $buyer_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $uemail . "'");
+                    $buyer_data = $buyer_rs->fetch_assoc();
+                    ?>
+
                     <div class="col-3 bg-secondary text-end">
-
-                        <?php
-                        $uemail = $invoice_data["user_email"];
-
-                        $buyer_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $uemail . "'");
-                        $buyer_data = $buyer_rs->fetch_assoc();
-                        ?>
-
                         <label class="form-label fs-5 fw-bold text-white mt-1 mb-1"><?php echo $buyer_data["fname"] . " " . $buyer_data["lname"]; ?></label>
                     </div>
 
@@ -102,27 +99,26 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                         <label class="form-label fs-5 fw-bold text-white mt-1 mb-1"><?php echo $invoice_data["id"]; ?></label>
                     </div>
 
+                    <?php
+                    $pid = $invoice_data["product_id"];
+
+                    $product_rs = Database::search("SELECT * FROM `product` WHERE `id`='" . $pid . "'");
+                    $product_data = $product_rs->fetch_assoc();
+
+                    ?>
+
                     <div class="col-3 bg-body text-end">
-
-                        <?php
-                        $pid = $invoice_data["product_id"];
-
-                        $product_rs = Database::search("SELECT * FROM `product` WHERE `id`='" . $pid . "'");
-                        $product_data = $product_rs->fetch_assoc();
-
-                        ?>
-
                         <label class="form-label fs-5 fw-bold text-black mt-1 mb-1"><?php echo $product_data["title"]; ?></label>
                     </div>
 
+                    <?php
+                    $uemail = $invoice_data["user_email"];
+
+                    $buyer_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $uemail . "'");
+                    $buyer_data = $buyer_rs->fetch_assoc();
+                    ?>
+
                     <div class="col-3 bg-secondary text-end">
-
-                        <?php
-                        $uemail = $invoice_data["user_email"];
-
-                        $buyer_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $uemail . "'");
-                        $buyer_data = $buyer_rs->fetch_assoc();
-                        ?>
 
                         <label class="form-label fs-5 fw-bold text-white mt-1 mb-1"><?php echo $buyer_data["fname"] . " " . $buyer_data["lname"]; ?></label>
                     </div>
@@ -176,28 +172,26 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                         <label class="form-label fs-5 fw-bold text-white mt-1 mb-1"><?php echo $invoice_data["id"]; ?></label>
                     </div>
 
+                    <?php
+                    $pid = $invoice_data["product_id"];
+
+                    $product_rs = Database::search("SELECT * FROM `product` WHERE `id`='" . $pid . "'");
+                    $product_data = $product_rs->fetch_assoc();
+
+                    ?>
+
                     <div class="col-3 bg-body text-end">
-
-                        <?php
-                        $pid = $invoice_data["product_id"];
-
-                        $product_rs = Database::search("SELECT * FROM `product` WHERE `id`='" . $pid . "'");
-                        $product_data = $product_rs->fetch_assoc();
-
-                        ?>
-
                         <label class="form-label fs-5 fw-bold text-black mt-1 mb-1"><?php echo $product_data["title"]; ?></label>
                     </div>
 
+                    <?php
+                    $uemail = $invoice_data["user_email"];
+
+                    $buyer_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $uemail . "'");
+                    $buyer_data = $buyer_rs->fetch_assoc();
+                    ?>
+                    
                     <div class="col-3 bg-secondary text-end">
-
-                        <?php
-                        $uemail = $invoice_data["user_email"];
-
-                        $buyer_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $uemail . "'");
-                        $buyer_data = $buyer_rs->fetch_assoc();
-                        ?>
-
                         <label class="form-label fs-5 fw-bold text-white mt-1 mb-1"><?php echo $buyer_data["fname"] . " " . $buyer_data["lname"]; ?></label>
                     </div>
 

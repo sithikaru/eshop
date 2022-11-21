@@ -4,7 +4,6 @@ session_start();
 require "connection.php";
 
 $msg_txt = $_POST["t"];
-$receiver = $_POST["r"];
 
 $d = new DateTime();
 $tz = new DateTimeZone("Asia/Colombo");
@@ -23,18 +22,21 @@ if(isset($_SESSION["u"])){
 
 }
  
-if(empty($receiver)){
+if(empty($_POST["r"])){
     Database::iud("INSERT INTO `chat`(`content`,`date_time`,`status`,`from`,`to`) VALUES
-    ('".$msg_txt."','".$date."','0','".$sender."','".$receiver."')");
+    ('".$msg_txt."','".$date."','0','".$sender."','malindu2003@gmail.com')");
 
     echo ("success1");
 
 }else{
+    $receiver = $_POST["r"];
+    
     Database::iud("INSERT INTO `chat`(`content`,`date_time`,`status`,`from`,`to`) VALUES
-    ('".$msg_txt."','".$date."','0','".$sender."','malindu2003@gmail.com')");
+    ('".$msg_txt."','".$date."','0','".$sender."','".$receiver."')");
 
     echo ("success2");
 
 }
 
 ?>
+

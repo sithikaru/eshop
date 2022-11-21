@@ -17,7 +17,7 @@ if (isset($_POST["email"]) && isset($_POST["name"])) {
         $umail = $_POST["email"];
 
         $category_rs = Database::search("SELECT * FROM `category` WHERE `name` LIKE '%" . $cname . "%'");
-        $category_num = $category_rs->fetch_assoc();
+        $category_num = $category_rs->num_rows;
 
         if ($category_num == 0) {
 

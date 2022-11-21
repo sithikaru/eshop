@@ -74,9 +74,7 @@ if(isset($_SESSION["u"])){
     if($address_num == 1){
 
         Database::iud("UPDATE `user_has_address` SET `line1`='".$line1."',
-        `line2`='".$line2."',
-        `city_id`='".$city."',
-        `postal_code`='".$pcode."' WHERE `user_email`='".$_SESSION["u"]["email"]."'");
+        `line2`='".$line2."',`city_id`='".$city."',`postal_code`='".$pcode."' WHERE `user_email`='".$_SESSION["u"]["email"]."'");
 
     }else{
 

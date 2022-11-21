@@ -154,7 +154,24 @@
                             </div>
                             <div class="modal-body">
                                 <div class="offset-4 col-4">
-                                    <img src="resource/mobile_images/iphone12.jpg" class="img-fluid" style="height: 130px;" />
+                                    <?php
+
+                                    $image_rs = Database::search("SELECT * FROM `images` WHERE `product_id`='" . $selected_data["id"] . "'");
+                                    $image_data = $image_rs->fetch_assoc();
+
+                                    if (isset($image_data["code"])) {
+                                    ?>
+                                        <img src="<?php echo $image_data['code']?>" class="img-fluid" style="height: 130px;" />
+                                    <?php
+
+                                    } else {
+                                    ?>
+                                        <img src="resource/mobile_images/iphone12.jpg" class="img-fluid" style="height: 130px;" />
+                                    <?php
+                                    }
+
+                                    ?>
+
                                 </div>
                                 <div class="col-12">
                                     <span class="fs-5 fw-bold">Price :</span>&nbsp;
@@ -268,13 +285,13 @@
                     ?>
 
 
-                    <div class="col-12 col-lg-3 border border-success rounded" style="height: 50px;" >
+                    <div class="col-12 col-lg-3 border border-success rounded" style="height: 50px;">
                         <div class="row">
                             <div class="col-8 mt-2">
                                 <label class="form-label fw-bold fs-5">Add New Category</label>
                             </div>
                             <div class="col-4 border-start border-secondary text-center mt-2">
-                                <label class="form-label fs-4"><i class="bi bi-plus-square-fill text-success fs-4"  onclick="addNewCategory();" style="cursor: pointer;"></i></label>
+                                <label class="form-label fs-4"><i class="bi bi-plus-square-fill text-success fs-4" onclick="addNewCategory();" style="cursor: pointer;"></i></label>
                             </div>
                         </div>
                     </div>
@@ -292,11 +309,11 @@
                         <div class="modal-body">
                             <div class="col-12">
                                 <label class="form-label">New Category Name : </label>
-                                <input type="text" class="form-control" id="n"/>
+                                <input type="text" class="form-control" id="n" />
                             </div>
                             <div class="col-12 mt-2">
                                 <label class="form-label">Enter Your Email : </label>
-                                <input type="text" class="form-control" id="e"/>
+                                <input type="text" class="form-control" id="e" />
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -318,7 +335,7 @@
                         <div class="modal-body">
                             <div class="col-12 mt-3 mb-3">
                                 <label class="form-label">Enter Your Verification Code : </label>
-                                <input type="text" class="form-control" id="txt"/>
+                                <input type="text" class="form-control" id="txt" />
                             </div>
                         </div>
                         <div class="modal-footer">

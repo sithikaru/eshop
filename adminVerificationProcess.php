@@ -8,18 +8,21 @@ require "Exception.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-if(isset($_POST["e"])){
+if (isset($_POST["e"])) {
 
     $email = $_POST["e"];
 
-    $admin_rs = Database::search("SELECT * FROM `admin` WHERE `email`='".$email."'");
+    $admin_rs = Database::search("SELECT * FROM `admin` WHERE `email`='" . $email . "'");
     $admin_num = $admin_rs->num_rows;
 
-    if($admin_num > 0){
+    if ($admin_num == 0) {
 
+        echo ("You are not a valid admin!");
+        
+    } else {
         $code = uniqid();
 
-        Database::iud("UPDATE `admin` SET `verification_code`='".$code."' WHERE `email`='".$email."'");
+        Database::iud("UPDATE `admin` SET `verification_code`='" . $code . "' WHERE `email`='" . $email . "'");
 
         $mail = new PHPMailer;
         $mail->IsSMTP();
@@ -34,21 +37,16 @@ if(isset($_POST["e"])){
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = 'eShop Admin Login Verification Code';
-        $bodyContent = '<h1 style=""color:blue">Your Verification Code is : '.$code.'</h1>';
+        $bodyContent = '<h1 style=""color:blue">Your Verification Code is : ' . $code . '</h1>';
         $mail->Body    = $bodyContent;
 
-        if(!$mail->send()){
-            echo("Verification code sending failed");
-        }else{
-            echo("success");
+        if (!$mail->send()) {
+            echo ("Verification code sending failed");
+        } else {
+            echo ("success");
         }
-
-    }else{
-        echo ("You are not a valid user!");
     }
 
-}else{
+} else {
     echo ("Email field should not be empty.");
 }
-
-?>

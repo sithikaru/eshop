@@ -27,9 +27,15 @@ if(empty($email)){
    
    if($n == 1){
 
-    echo("success"); 
+     
     $d = $rs->fetch_assoc();
     $_SESSION["u"] = $d;
+
+    if($d["status"] == 0){
+        echo("You can't Signin to the eShop because the admin was blocked you."); 
+    }else{
+        echo("success"); 
+    }
 
     if($rememberme == "true"){
 

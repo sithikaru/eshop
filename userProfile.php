@@ -263,7 +263,7 @@
                                                         $district_data = $district_rs->fetch_assoc();
                                                     ?>
 
-                                                        <option value="<?php echo $province_data["id"]; ?>" <?php
+                                                        <option value="<?php echo $district_data["id"]; ?>" <?php
                                                                                                             if (!empty($address_data["district_id"])) {
                                                                                                                 if ($district_data["id"] == $address_data["district_id"]) {
                                                                                                             ?> selected <?php
@@ -291,7 +291,7 @@
                                                     for ($x = 0; $x < $city_num; $x++) {
                                                         $city_data = $city_rs->fetch_assoc();
                                                     ?>
-                                                        <option value="<?php echo $province_data["id"]; ?>" <?php
+                                                        <option value="<?php echo $city_data["id"]; ?>" <?php
                                                                                                             if (!empty($address_data["city_id"])) {
                                                                                                                 if ($city_data["id"] == $address_data["city_id"]) {
                                                                                                             ?> selected <?php

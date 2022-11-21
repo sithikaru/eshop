@@ -12,7 +12,7 @@ require "connection.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Admin Panel | eShop</title>
+    <title>Selling History | eShop</title>
 
     <link rel="stylesheet" href="bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
@@ -100,7 +100,7 @@ require "connection.php";
                 $invoice_rs = Database::search($query);
                 $invoice_num = $invoice_rs->num_rows;
 
-                $results_per_page = 10;
+                $results_per_page = 20;
                 $number_of_pages = ceil($invoice_num / $results_per_page);
 
                 $page_results = ($pageno - 1) * $results_per_page;

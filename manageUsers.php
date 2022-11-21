@@ -1,6 +1,9 @@
 <?php
 
+session_start();
 require "connection.php";
+
+$admin = $_SESSION["au"]["email"];
 
 ?>
 
@@ -21,7 +24,7 @@ require "connection.php";
     <link rel="icon" href="resource/logo.svg" />
 </head>
 
-<body style="background-color: #74EBD5; background-image: linear-gradient(90deg,#74EBD5 0%,#9FACE6 100%);">
+<body style="background-color: #74EBD5; background-image: linear-gradient(90deg,#74EBD5 0%,#9FACE6 100%);" onload="adminMsgViewReload();">
 
     <div class="container-fluid">
         <div class="row">
@@ -102,11 +105,11 @@ require "connection.php";
                         <div class="col-2 col-lg-1 bg-primary py-2 text-end">
                             <span class="fs-4 fw-bold text-white"><?php echo $x + 1; ?></span>
                         </div>
-                        <div class="col-2 d-none d-lg-block bg-light py-2" onclick="viewMsgModal('<?php echo $selected_data['email']; ?>');">
+                        <div class="col-2 d-none d-lg-block bg-light py-2" onclick="viewMsgModal('<?php echo $selected_data['email']; ?>','<?php echo $x; ?>');"  style="cursor: pointer;">
                             <img src="resource/profile_img/new_user.svg" style="height: 40px; margin-left: 80px;" />
                         </div>
-                        <div class="col-4 col-lg-2 bg-primary py-2">
-                            <span class="fs-4 fw-bold text-white"><?php echo $selected_data["fname"] . " " . $selected_data["lname"]; ?></span>
+                        <div class="col-4 col-lg-2 bg-primary py-2" onclick="viewMsgModal('<?php echo $selected_data['email']; ?>','<?php echo $x; ?>');" style="cursor: pointer;">
+                            <span class="fs-4 fw-bold text-white" ><?php echo $selected_data["fname"] . " " . $selected_data["lname"]; ?></span>
                         </div>
                         <div class="col-4 col-lg-2 d-lg-block bg-light py-2">
                             <span class="fs-4 fw-bold"><?php echo $selected_data["email"] ?></span>
@@ -114,7 +117,7 @@ require "connection.php";
                         <div class="col-2 d-none d-lg-block bg-primary py-2">
                             <span class="fs-4 fw-bold text-white"><?php echo $selected_data["mobile"] ?></span>
                         </div>
-                        <div class="col-2 d-none d-lg-block bg-primary py-2">
+                        <div class="col-2 d-none d-lg-block bg-light py-2">
                             <span class="fs-4 fw-bold"><?php echo $selected_data["joined_date"] ?></span>
                         </div>
                         <div class="col-2 col-lg-1 bg-white py-2 d-grid">
@@ -136,6 +139,8 @@ require "connection.php";
                     </div>
                 </div>
 
+
+
                 <!-- msg modal -->
                 <div class="modal" tabindex="-1" id="userMsgModal<?php echo $selected_data["email"]; ?>">
                     <div class="modal-dialog">
@@ -144,49 +149,20 @@ require "connection.php";
                                 <h5 class="modal-title"><?php echo $selected_data['fname'] . " " . $selected_data["lname"]; ?></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body overflow-scroll">
-                                <!-- received -->
-                                <div class="col-12 mt-2">
-                                    <div class=" row">
-                                        <div class="col-8 rounded bg-success">
-                                            <div class="row">
-                                                <div class="col-12 pt-2">
-                                                    <span class="text-white fw-bold fs-4">Hello there!!!</span>
-                                                </div>
-                                                <div class="col-12 text-end pb-2">
-                                                    <span class="text-white fs-6">2022-11-09 00:00:00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- received -->
-                                <!-- sent -->
-                                <div class="col-12 mt-2">
-                                    <div class=" row">
-                                        <div class="offset-4 col-8 rounded bg-primary">
-                                            <div class="row">
-                                                <div class="col-12 pt-2">
-                                                    <span class="text-white fw-bold fs-4">Hello there!!!</span>
-                                                </div>
-                                                <div class="col-12 text-end pb-2">
-                                                    <span class="text-white fs-6">2022-11-09 00:00:00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- sent -->
+                            <div class="modal-body overflow-scroll" id="admin<?php echo $x; ?>">
+
+                               
+
                             </div>
                             <div class="modal-footer">
 
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-9">
-                                            <input type="text" class="form-control" id="msgtxt"/>
+                                            <input type="text" class="form-control" id="msgtxt<?php echo $x; ?>" placeholder="type..."/>
                                         </div>
                                         <div class="col-3 d-grid">
-                                            <button type="button" class="btn btn-primary" onclick="sendAdminMsg('<?php echo $selected_data['email'] ?>')">Send</button>
+                                            <button type="button" class="btn btn-primary" onclick="sendAdminMsg('<?php echo $selected_data['email'] ?>','msgtxt<?php echo $x; ?>')">Send</button>
                                         </div>
                                     </div>
                                 </div>
@@ -199,9 +175,12 @@ require "connection.php";
 
             <?php
 
+
             }
 
             ?>
+
+
 
             <!--  -->
             <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
@@ -255,6 +234,7 @@ require "connection.php";
 
     <script src="script.js"></script>
     <script src="bootstrap.bundle.js"></script>
+
 </body>
 
 </html>
